@@ -1,0 +1,49 @@
+<h1>Bid Now!</h1>
+
+<div
+    class="bid-new-div"
+>
+    <form
+      (submit)="onSubmit(product1); createForm.resetForm()"
+      #createForm="ngForm"
+    >
+    <label>Your Bid:</label>
+    <input
+      type="number"
+      name="bet"
+      id="bet"
+      required
+      [(ngModel)]="bid.bet"
+      #bet= "ngModel"
+    />
+    <small
+      class="errors"
+      [hidden]="bet.valid || (bet.untouched && !createForm.submitted)"
+      >Bid is required.
+    </small>
+    <button
+      class="bid-new-submit"
+      [disabled]="!createForm.valid"
+      type="submit"
+    >Submit</button>
+    </form>
+</div>
+
+<button
+  (click)="result()"
+  >End Bid    
+</button>
+
+<table *ngFor="let bidi of bid2">
+    <thead>
+      <tr>
+        <th>{{ bidi.product }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ bidi.bet }}</td>
+      </tr>
+    </tbody>
+</table>
+<p>Search:</p>
